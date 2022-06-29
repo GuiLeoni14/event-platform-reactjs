@@ -1,26 +1,16 @@
-import { gql, useQuery } from '@apollo/client';
-import { useEffect } from 'react';
+import { ApolloProvider, gql, useQuery } from '@apollo/client';
+import { BrowserRouter } from 'react-router-dom';
 import { client } from './lib/apollo';
-import Event from './pages/Event';
+import { Router } from './routes';
 
-const GET_LESSONS_QUERY = gql`
-    query {
-        lessons {
-            id
-            slug
-            title
-            teacher {
-                bio
-                name
-                avatarURL
-            }
-        }
-    }
-`;
 function App() {
-    const { data } = useQuery(GET_LESSONS_QUERY);
-    console.log(data);
-    return <Event />;
+    return (
+        <ApolloProvider client={client}>
+            <BrowserRouter>
+                <Router />
+            </BrowserRouter>
+        </ApolloProvider>
+    );
 }
 
 export default App;
