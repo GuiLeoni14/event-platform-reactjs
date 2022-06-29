@@ -38,6 +38,7 @@ export function Video({ lessonSlug }: IVideoProps) {
             slug: lessonSlug,
         },
     });
+    console.log(lessonSlug);
     if (!data) {
         return (
             <div className="flex-1">
@@ -46,7 +47,7 @@ export function Video({ lessonSlug }: IVideoProps) {
         );
     }
     return (
-        <div className="flex-1">
+        <div className="flex-1" key={lessonSlug}>
             <div className="bg-black flex justify-center">
                 <div className="h-full w-full max-w-[1100px] max-h-[60vh] aspect-video">
                     <Player>
